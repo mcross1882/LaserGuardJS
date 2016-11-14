@@ -1,10 +1,9 @@
 
 class ShapeFactory {
 
-    generateShapes(gameWidth, gameHeight, playerColor, numberOfShapes) {
+    generateShapes(gameWidth, gameHeight, playerColor, startingPoint, numberOfShapes) {
         var shape = null;
         var shapeIndex = 1;
-        var startingPoint = gameHeight / 2;
         var result = [];
 
         while (shapeIndex <= numberOfShapes) {
@@ -19,13 +18,13 @@ class ShapeFactory {
                 result.push(shape);
             }
             shapeIndex++;
-            startingPoint -= 250;
+            startingPoint -= ShapeFactory.SHAPE_DISTANCE;
         }
         return result;
     }
 
     randomShape(gameWidth, gameHeight, playerColor) {
-        var index = Math.floor(Math.random() * 4);
+        var index = Math.floor(Math.random() * 6);
         var centerX = gameWidth / 2;
         var centerY = gameHeight / 2;
 
@@ -43,6 +42,12 @@ class ShapeFactory {
             case 3:
                 shape = this.createTriangle(centerX, centerY);
                 break
+            case 4:
+                shape = this.createCross(centerX, centerY);
+                break;
+            case 5:
+                shape = this.createDoubleCross(centerX, centerY);
+                break;
         }
 
         if (Array.isArray(shape)) {
@@ -94,5 +99,26 @@ class ShapeFactory {
         triangle.addMatrix(new AnimationRotationMatrix(1, 1));
         return triangle;
     }
+
+    createCross(x, y) {
+        var cross = new Cross(100);
+        cross.addMatrix(new TranslateMatrix(x + 50, y));
+        cross.addMatrix(new AnimationRotationMatrix(1, 1));
+        return cross;
+    }
+
+    createDoubleCross(x, y) {
+        var crossA = new Cross(50);
+        crossA.addMatrix(new TranslateMatrix(x + 60, y));
+        crossA.addMatrix(new AnimationRotationMatrix(1, 1));
+
+        var crossB = new Cross(50);
+        crossB.addMatrix(new TranslateMatrix(x - 60, y));
+        crossB.addMatrix(new AnimationRotationMatrix(1, 1));
+
+        return [crossA, crossB];
+    }
 }
+
+ShapeFactory.SHAPE_DISTANCE = 250;
 
