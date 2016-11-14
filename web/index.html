@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Laser Ball</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+        <script type="text/javascript" src="js/colors.js"></script>
+        <script type="text/javascript" src="js/point.js"></script>
+        <script type="text/javascript" src="js/player.js"></script>
+
+        <script type="text/javascript" src="js/matrix/rotationmatrix.js"></script>
+        <script type="text/javascript" src="js/matrix/translatematrix.js"></script>
+        <script type="text/javascript" src="js/matrix/scalematrix.js"></script>
+        <script type="text/javascript" src="js/matrix/animationrotationmatrix.js"></script>
+        <script type="text/javascript" src="js/matrix/animationtranslatematrix.js"></script>
+
+        <script type="text/javascript" src="js/shapes/polygon.js"></script>
+        <script type="text/javascript" src="js/shapes/line.js"></script>
+        <script type="text/javascript" src="js/shapes/square.js"></script>
+        <script type="text/javascript" src="js/shapes/circle.js"></script>
+        <script type="text/javascript" src="js/shapes/triangle.js"></script>
+        <script type="text/javascript" src="js/shapes/shapefactory.js"></script>
+
+        <script type="text/javascript" src="js/game.js"></script>
+
+        <script type="text/javascript">
+            document.addEventListener('DOMContentLoaded', function() {
+                var width = window.innerWidth
+                || document.documentElement.clientWidth
+                || document.body.clientWidth;
+
+                var height = window.innerHeight
+                || document.documentElement.clientHeight
+                || document.body.clientHeight;
+
+                var canvas = document.getElementById('game');
+                canvas.width = width;
+                canvas.height = height;
+
+                var ctx = canvas.getContext('2d');
+
+                var game = new Game(width - 25, height, ctx);
+                game.start();
+            });
+        </script>
+    </head>
+
+    <body>
+        <div id="game-wrapper">
+            <canvas id="game" width="400" height="640"></canvas>
+        </div>
+    </body>
+</html>
+
