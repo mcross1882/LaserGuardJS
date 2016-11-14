@@ -17,7 +17,17 @@ class Game {
 
         this.shapeFactory = new ShapeFactory();
         this.player = new Player(width / 2, this.STARTING_POINT, ColorMapper.randomColor());
-        this.obstacles = this.shapeFactory.generateShapes(this.GAME_WIDTH, this.GAME_HEIGHT, this.player.color, 10);
+        this.obstacles = this.shapeFactory.generateShapes(
+            this.GAME_WIDTH,
+            this.GAME_HEIGHT,
+            this.player.color,
+            this.GAME_HEIGHT / 2,
+            10
+        );
+
+
+        this.canvas.font = "24px Monospace";
+        this.canvas.lineCap = 'round';
 
         this.registerGlobalEvents();
     }
@@ -56,28 +66,33 @@ class Game {
             this.currentScore += this.SCROLL_LENGTH;
         }
 
-        this.addMoreShapes(2);
+        this.addMoreShapes(5, 2);
     }
 
-    addMoreShapes(viewLimit) {
+    addMoreShapes(viewLimit, trimAmount) {
         var numberOfShapes = this.countHiddenShapes();
-        console.log(numberOfShapes, viewLimit);
         if (numberOfShapes > viewLimit) {
-            this.obstacles = this.obstacles.slice(viewLimit);
+            this.obstacles = this.obstacles.slice(trimAmount);
         } else {
             return;
         }
 
-        this.player.color = ColorMapper.randomColor();
-        var newShapes = this.shapeFactory.generateShapes(this.GAME_WIDTH, this.GAME_HEIGHT, this.player.color, viewLimit);
-        for (var index=0; index < viewLimit; index++) {
-            this.obstacles.push(newShapes);
+        var newShapes = this.shapeFactory.generateShapes(
+            this.GAME_WIDTH,
+            this.GAME_HEIGHT,
+            this.player.color,
+            this.obstacles.length * -ShapeFactory.SHAPE_DISTANCE,
+            trimAmount
+        );
+
+        for (var index=0; index < newShapes.length; index++) {
+            this.obstacles.push(newShapes[index]);
         }
     }
 
     countHiddenShapes() {
-        var result = 0;
-        for (var index=this.obstacles.length - 1; index >= 0; index--) {
+        var result = 0; 
+        for (var index=0; index < this.obstacles.length; index++) {
             if (this.player.y < this.obstacles[index].transformations[0].y) {
                 result++;
             } else {
@@ -96,7 +111,6 @@ class Game {
             this.obstacles[index].draw(this.canvas);
         }
 
-        this.canvas.font = "24px Monospace";
         this.canvas.fillText("Score: " + this.currentScore, 100, 25);
     }
 
