@@ -1,7 +1,11 @@
 
 class ShapeFactory {
 
-    generateShapes(gameWidth, gameHeight, playerColor, startingPoint, numberOfShapes) {
+    constructor(drawPoint) {
+        this.drawPoint = drawPoint;
+    }
+
+    generateShapes(gameWidth, gameHeight, playerColor, numberOfShapes) {
         var shape = null;
         var shapeIndex = 1;
         var result = [];
@@ -10,15 +14,15 @@ class ShapeFactory {
             shape = this.randomShape(gameWidth, gameHeight, playerColor);
             if (Array.isArray(shape)) {
                 for (var index=0; index < shape.length; index++) {
-                    shape[index].transformations[0].y = startingPoint;
+                    shape[index].transformations[0].y = this.drawPoint;
                     result.push(shape[index]);
                 }
             } else {
-                shape.transformations[0].y = startingPoint;
+                shape.transformations[0].y = this.drawPoint;
                 result.push(shape);
             }
             shapeIndex++;
-            startingPoint -= ShapeFactory.SHAPE_DISTANCE;
+            this.drawPoint -= ShapeFactory.SHAPE_DISTANCE;
         }
         return result;
     }

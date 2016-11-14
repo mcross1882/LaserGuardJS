@@ -15,16 +15,14 @@ class Game {
         this.playerAccelerationLock = false;
         this.currentScore = 0;
 
-        this.shapeFactory = new ShapeFactory();
+        this.shapeFactory = new ShapeFactory(this.GAME_HEIGHT / 2);
         this.player = new Player(width / 2, this.STARTING_POINT, ColorMapper.randomColor());
         this.obstacles = this.shapeFactory.generateShapes(
             this.GAME_WIDTH,
             this.GAME_HEIGHT,
             this.player.color,
-            this.GAME_HEIGHT / 2,
             10
         );
-
 
         this.canvas.font = "24px Monospace";
         this.canvas.lineCap = 'round';
@@ -81,7 +79,6 @@ class Game {
             this.GAME_WIDTH,
             this.GAME_HEIGHT,
             this.player.color,
-            this.obstacles.length * -ShapeFactory.SHAPE_DISTANCE,
             trimAmount
         );
 
