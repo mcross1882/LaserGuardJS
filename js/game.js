@@ -5,7 +5,7 @@ class Game {
         this.GAME_WIDTH     = width;
         this.GAME_HEIGHT    = height;
         this.STARTING_POINT = height - 100;
-        this.SCROLL_POINT   = height * 0.4;
+        this.SCROLL_POINT   = height * 0.75;
         this.SCROLL_LENGTH  = 1;
         this.KEY_SPACEBAR   = 32;
 
@@ -57,7 +57,7 @@ class Game {
             this.stop();
         }
 
-        if (this.player.y < this.SCROLL_POINT) {
+        if (this.player.y < this.SCROLL_POINT && this.player.velocity < 0) {
             for (var index=0;  index < this.obstacles.length; index++) {
                 this.obstacles[index].transformations[0].y += this.SCROLL_LENGTH;
             }
@@ -108,7 +108,7 @@ class Game {
             this.obstacles[index].draw(this.canvas);
         }
 
-        this.canvas.fillText("Score: " + this.currentScore, 100, 25);
+        this.canvas.fillText("Score: " + this.currentScore, 25, 25);
     }
 
     registerGlobalEvents() {
