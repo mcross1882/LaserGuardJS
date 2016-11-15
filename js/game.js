@@ -24,6 +24,7 @@ class Game {
             10
         );
 
+        this.canvas.lineWidth = 6;
         this.canvas.font = "24px Monospace";
         this.canvas.lineCap = 'round';
 

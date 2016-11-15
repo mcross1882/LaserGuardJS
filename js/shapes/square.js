@@ -13,8 +13,6 @@ class Square extends Polygon {
         var lines = this.getLines();
         canvas.save();
 
-        canvas.lineWidth = 6;
-
         this.applyTransformations(canvas);
 
         for (var index=0; index < lines.length; index++) {

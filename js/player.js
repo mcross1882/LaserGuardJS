@@ -59,7 +59,7 @@ class Player extends Point {
 
 Player.MAX_VELOCITY = -2;
 
-Player.DEFAULT_VELOCITY = 2;
+Player.DEFAULT_VELOCITY = 4;
 
 Player.VELOCITY_STEP = -2;
 

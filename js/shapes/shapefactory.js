@@ -28,7 +28,7 @@ class ShapeFactory {
     }
 
     randomShape(gameWidth, gameHeight, playerColor) {
-        var index = Math.floor(Math.random() * 6);
+        var index = Math.floor(Math.random() * 8);
         var centerX = gameWidth / 2;
         var centerY = gameHeight / 2;
 
@@ -51,6 +51,12 @@ class ShapeFactory {
                 break;
             case 5:
                 shape = this.createDoubleCross(centerX, centerY);
+                break;
+            case 6:
+                shape = this.createColorChangingLine(centerX, centerY);
+                break;
+            case 7:
+                shape = this.createRotatingColorChangingLine(centerX, centerY);
                 break;
         }
 
@@ -121,6 +127,19 @@ class ShapeFactory {
         crossB.addMatrix(new AnimationRotationMatrix(1, 1));
 
         return [crossA, crossB];
+    }
+
+    createColorChangingLine(x, y) {
+        var line = new ColorChangingLine(100);
+        line.addMatrix(new TranslateMatrix(x, y));
+        return line;
+    }
+
+    createRotatingColorChangingLine(x, y) {
+        var line = new ColorChangingLine(100);
+        line.addMatrix(new TranslateMatrix(x - 50, y));
+        line.addMatrix(new AnimationRotationMatrix(1, 1));
+        return line;
     }
 }
 
