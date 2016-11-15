@@ -5,7 +5,7 @@ class Game {
         this.GAME_WIDTH     = width;
         this.GAME_HEIGHT    = height;
         this.STARTING_POINT = height - 100;
-        this.SCROLL_POINT   = height * 0.75;
+        this.SCROLL_POINT   = height * 0.6;
         this.SCROLL_LENGTH  = 1;
         this.KEY_SPACEBAR   = 32;
 
@@ -15,7 +15,7 @@ class Game {
         this.playerAccelerationLock = false;
         this.currentScore = 0;
 
-        this.shapeFactory = new ShapeFactory(this.GAME_HEIGHT / 2);
+        this.shapeFactory = new ShapeFactory(this.GAME_HEIGHT / 3);
         this.player = new Player(width / 2, this.STARTING_POINT, ColorMapper.randomColor());
         this.obstacles = this.shapeFactory.generateShapes(
             this.GAME_WIDTH,

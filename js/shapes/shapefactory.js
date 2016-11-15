@@ -124,5 +124,5 @@ class ShapeFactory {
     }
 }
 
-ShapeFactory.SHAPE_DISTANCE = 250;
+ShapeFactory.SHAPE_DISTANCE = 400;
 
