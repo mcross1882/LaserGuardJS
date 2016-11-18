@@ -22,5 +22,18 @@ class Polygon {
             this.transformations[index].transform(canvas);
         }
     }
+
+    draw(canvas) {
+        canvas.save();
+
+        this.applyTransformations(canvas);
+
+        var lines = this.getLines();
+        for (var index=0; index < lines.length; index++) {
+            lines[index].draw(canvas);
+        }
+
+        canvas.restore();
+    }
 }
 

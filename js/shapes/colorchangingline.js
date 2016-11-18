@@ -14,17 +14,6 @@ class ColorChangingLine extends Polygon {
         }
         this.iteration++;
 
-        canvas.save();
-
-        this.applyTransformations(canvas);
-
-        var line = this.getLines()[0];
-        canvas.strokeStyle = this.currentColor;
-        canvas.beginPath();
-        canvas.moveTo(line.start.x, line.start.y);
-        canvas.lineTo(line.end.x, line.end.y);
-        canvas.stroke();
-
-        canvas.restore();
+        super.draw(canvas);
     }
 }

@@ -15,8 +15,6 @@ class Circle extends Polygon {
     draw(canvas) {
         canvas.save();
 
-        canvas.lineWidth = 6;
-
         this.applyTransformations(canvas);
 
         canvas.strokeStyle = ColorMapper.colors[0].color;

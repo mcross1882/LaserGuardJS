@@ -7,21 +7,4 @@ class Triangle extends Polygon {
             new Line(right, top, ColorMapper.randomColor()),
         ]);
     }
-
-    draw(canvas) {
-        var lines = this.getLines();
-        canvas.save();
-
-        this.applyTransformations(canvas);
-
-        for (var index=0; index < lines.length; index++) {
-            canvas.strokeStyle = lines[index].color.color;
-            canvas.beginPath();
-            canvas.moveTo(lines[index].start.x, lines[index].start.y);
-            canvas.lineTo(lines[index].end.x, lines[index].end.y);
-            canvas.stroke();
-        }
-
-        canvas.restore();
-    }
 }
