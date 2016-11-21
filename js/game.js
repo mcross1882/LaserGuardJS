@@ -1,3 +1,10 @@
+/**
+ * LaserGuardJS
+ * Academic exercise in building HTML5 Javascript games.
+ *
+ * @package LaserGuardJS
+ * @since   20161119
+ */
 
 class Game {
 
@@ -5,8 +12,8 @@ class Game {
         this.GAME_WIDTH     = width;
         this.GAME_HEIGHT    = height;
         this.STARTING_POINT = height - 100;
-        this.SCROLL_POINT   = height * 0.6;
-        this.SCROLL_LENGTH  = 1;
+        this.SCROLL_POINT   = height / 2;
+        this.SCROLL_LENGTH  = 2;
         this.KEY_SPACEBAR   = 32;
 
         this.canvas = canvas;
@@ -47,14 +54,12 @@ class Game {
 
     update() {
         if (this.player.isCollision(this.canvas)) {
-            console.log('Collision');
             this.stop();
         }
 
         this.player.update();
 
         if (this.player.y >= this.GAME_HEIGHT) {
-            console.log('Player has died');
             this.stop();
         }
 

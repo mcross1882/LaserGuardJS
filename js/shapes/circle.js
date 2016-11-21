@@ -1,7 +1,12 @@
 
 class Circle extends Polygon {
     constructor(center, radius) {
-        super([new Line(center, center)]);
+        super([
+            new Line(center, center, ColorMapper.randomTransparentColor()),
+            new Line(center, center, ColorMapper.randomTransparentColor()),
+            new Line(center, center, ColorMapper.randomTransparentColor()),
+            new Line(center, center, ColorMapper.randomTransparentColor()),
+        ]);
 
         this.LOWER_LEFT_QUAD  = 0;
         this.LOWER_RIGHT_QUAD = Math.PI * 0.5;
@@ -17,22 +22,23 @@ class Circle extends Polygon {
 
         this.applyTransformations(canvas);
 
-        canvas.strokeStyle = ColorMapper.colors[0].color;
+        var lines = this.getLines();
+        canvas.strokeStyle = lines[0].color.color;
         canvas.beginPath();
         canvas.arc(this.center.x, this.center.y, this.radius, this.LOWER_LEFT_QUAD, this.LOWER_RIGHT_QUAD);
         canvas.stroke();
 
-        canvas.strokeStyle = ColorMapper.colors[1].color;
+        canvas.strokeStyle = lines[1].color.color;
         canvas.beginPath();
         canvas.arc(this.center.x, this.center.y, this.radius, this.LOWER_RIGHT_QUAD, this.UPPER_RIGHT_QUAD);
         canvas.stroke();
 
-        canvas.strokeStyle = ColorMapper.colors[2].color;
+        canvas.strokeStyle = lines[2].color.color;
         canvas.beginPath();
         canvas.arc(this.center.x, this.center.y, this.radius, this.UPPER_RIGHT_QUAD, this.UPPER_LEFT_QUAD);
         canvas.stroke();
 
-        canvas.strokeStyle = ColorMapper.colors[3].color;
+        canvas.strokeStyle = lines[3].color.color;
         canvas.beginPath();
         canvas.arc(this.center.x, this.center.y, this.radius, this.UPPER_LEFT_QUAD, this.LOWER_LEFT_QUAD);
         canvas.stroke();

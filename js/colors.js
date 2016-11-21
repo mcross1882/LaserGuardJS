@@ -13,6 +13,14 @@ class ColorMapper {
         return ColorMapper.colors[index];
     }
 
+    static randomTransparentColor() {
+        var index = Math.floor(Math.random() * (ColorMapper.colors.length + 1));
+        if (index < ColorMapper.colors.length) {
+            return ColorMapper.colors[index];
+        }
+        return ColorMapper.transparent;
+    }
+
     static imageData(index) {
         if (!ColorMapper.colors[index]) {
             throw Error("Color does not exist for index " + index);
@@ -54,5 +62,8 @@ ColorMapper.colors = [
     {color: '#FF0000', bytes: [255, 0, 0, 255], name: 'red'},
     {color: '#00FF00', bytes: [0, 255, 0, 255], name: 'green'}
 ];
+
+ColorMapper.transparent = {color: 'rgba(0,0,0,0)', bytes: [0,0,0,0], name: 'transparent'};
+
 
 
