@@ -130,16 +130,9 @@ class ShapeFactory {
     }
 
     createColorChangingLine(x, y) {
-        var numberOfLines = Math.floor(Math.random() * 4) || 1;
-
-        var lines = [];
-        for (var index=0; index < numberOfLines; index++) {
-            var line = new ColorChangingLine(100);
-            line.addMatrix(new TranslateMatrix(x, y - (50 * index)));
-            lines.push(line);
-        }
-
-        return lines;
+        var line = new ColorChangingLine(100);
+        line.addMatrix(new TranslateMatrix(x, y - (50 * index)));
+        return line;
     }
 
     createRotatingColorChangingLine(x, y) {
