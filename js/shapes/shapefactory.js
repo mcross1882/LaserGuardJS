@@ -28,7 +28,7 @@ class ShapeFactory {
     }
 
     randomShape(gameWidth, gameHeight, playerColor) {
-        var index = Math.floor(Math.random() * 7);
+        var index = Math.floor(Math.random() * 8);
         var centerX = gameWidth / 2;
         var centerY = gameHeight / 2;
 
@@ -131,7 +131,7 @@ class ShapeFactory {
 
     createColorChangingLine(x, y) {
         var line = new ColorChangingLine(100);
-        line.addMatrix(new TranslateMatrix(x, y - (50 * index)));
+        line.addMatrix(new TranslateMatrix(x, y - 50));
         return line;
     }
 
