@@ -28,7 +28,7 @@ class ShapeFactory {
     }
 
     randomShape(gameWidth, gameHeight, playerColor) {
-        var index = Math.floor(Math.random() * 8);
+        var index = Math.floor(Math.random() * 7);
         var centerX = gameWidth / 2;
         var centerY = gameHeight / 2;
 
